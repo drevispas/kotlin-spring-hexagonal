@@ -4,7 +4,7 @@ import com.example.kotlinspringhexagonal.domain.Account
 
 interface ViewAccountQuery {
 
-    fun view(command: Query): Account
+    fun view(query: Query): Account
 
     data class Query(val accountNumber: Long)
 }

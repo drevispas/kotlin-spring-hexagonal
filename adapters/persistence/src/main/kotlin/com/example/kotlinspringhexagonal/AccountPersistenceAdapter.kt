@@ -21,7 +21,13 @@ class AccountPersistenceAdapter(
     }
 
     override fun load(accountNumber: Long): Account {
-        TODO("Not yet implemented")
+        val loaded = accountRepostory.findFirstByAccountNumber(accountNumber)
+        loaded ?: throw NoSuchElementException("Account not found!")
+        return Account(
+            Account.AccountId(loaded.accountNumber, loaded.id ?: -1),
+            loaded.accountName,
+            Money(loaded.balanceAmount)
+        )
     }
 
     override fun update(accountNumber: Long, accountName: String): Account {
