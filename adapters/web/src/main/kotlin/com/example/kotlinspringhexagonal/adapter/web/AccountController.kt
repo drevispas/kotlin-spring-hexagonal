@@ -9,19 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/account")
 class AccountController(
     private val registerAccountUseCase: RegisterAccountUseCase,
     private val viewAccountQuery: ViewAccountQuery
 ) {
 
     // 테스트 편의 상 POST 대신 GET 사용
-    @GetMapping("/users/{accountNumber}/{accountName}")
-    fun register(@PathVariable("accountNumber") accountNumber: Long, @PathVariable("accountName") userName: String): Account {
-        return registerAccountUseCase.register(RegisterAccountUseCase.Command(accountNumber, userName))
+    @GetMapping("/{accountNumber}/{accountName}/{balanceAmount}")
+    fun register(
+        @PathVariable("accountNumber") accountNumber: Long,
+        @PathVariable("accountName") userName: String,
+        @PathVariable("balanceAmount") balanceAmount: Long
+    ): Account {
+        return registerAccountUseCase.register(RegisterAccountUseCase.Command(accountNumber, userName, balanceAmount))
     }
 
-    @GetMapping("/users/{accountNumber}")
+    @GetMapping("/{accountNumber}")
     fun view(@PathVariable("accountNumber") accountNumber: Long): Account {
         return viewAccountQuery.view(ViewAccountQuery.Query(accountNumber))
     }

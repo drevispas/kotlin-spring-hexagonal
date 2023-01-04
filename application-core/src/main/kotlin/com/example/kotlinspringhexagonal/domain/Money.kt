@@ -1,8 +1,8 @@
 package com.example.kotlinspringhexagonal.domain
 
-data class Money(val amount: Int) {
+data class Money(val amount: Long, val currency: Currency = Currency.KRW) {
     companion object {
-        val ZERO = Money(0)
+        val ZERO = Money(0L)
     }
 }
 

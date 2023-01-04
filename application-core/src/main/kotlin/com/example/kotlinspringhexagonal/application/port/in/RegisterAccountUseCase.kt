@@ -7,5 +7,5 @@ interface RegisterAccountUseCase {
 
     fun register(command: Command): Account
 
-    data class Command(val accountNumber: Long, val accountName: String, val balance: Money = Money.ZERO)
+    data class Command(val accountNumber: Long, val accountName: String, val balanceAmount: Long = 0L)
 }

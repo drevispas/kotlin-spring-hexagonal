@@ -5,16 +5,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Component
 
-interface AccountRepository: JpaRepository<AccountRepository.AccountJpaEntity, Long> {
+interface AccountRepository : JpaRepository<AccountJpaEntity, Long> {
 
-    @Entity
-    @Table(name = "account")
-    class AccountJpaEntity {
-
-        @Id
-        @GeneratedValue
-        private val accountNumber: Long = 0L
-    }
 }

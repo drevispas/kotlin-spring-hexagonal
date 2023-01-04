@@ -9,10 +9,15 @@ import org.springframework.stereotype.Component
 
 @Component
 class AccountPersistenceAdapter(
-//    private val accountRepostory: AccountRepository
+    private val accountRepostory: AccountRepository
 ) : CreateAccountPort, UpdateAccountPort, LoadAccountPort {
-    override fun create(accountNumber: Long, accountName: String, balance: Money): Account {
-        TODO("Not yet implemented")
+    override fun create(accountNumber: Long, accountName: String, balanceAmount: Long): Account {
+        val saved = accountRepostory.save(AccountJpaEntity(null, accountNumber, accountName, balanceAmount))
+        return Account(
+            Account.AccountId(saved.accountNumber, saved.id ?: -1L),
+            saved.accountName,
+            Money(saved.balanceAmount)
+        )
     }
 
     override fun load(accountNumber: Long): Account {
