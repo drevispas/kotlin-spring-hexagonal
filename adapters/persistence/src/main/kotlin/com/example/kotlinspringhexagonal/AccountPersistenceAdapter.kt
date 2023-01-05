@@ -8,7 +8,12 @@ import com.example.kotlinspringhexagonal.domain.Money
 import org.springframework.stereotype.Component
 
 /**
- * Outgoing adapter는 DDD aggregate 하나 당 한 개 씩 생성한다.
+ * Outgoing adapter는 application-core에서 선언한 outgoing port 인터페이스를 구현하는 클래스이다.
+ * Usecase 별로 존재하는 복수개의 outgoing port가 1개의 persistence adapter에 대응되는 것이 보통이다.
+ * DDD aggregate 하나 당 persistence adapter를 한 개 씩 생성한다.
+ *
+ * 파라미터는 Spring JPA repository 또는 개인적으로 선언한 인터페이스가 될 수 있다.
+ * JpaRepository를 상속한 인퍼페이스인 경우 Spring이 자동으로 구현체를 주입해준다.
  */
 @Component
 class AccountPersistenceAdapter(
