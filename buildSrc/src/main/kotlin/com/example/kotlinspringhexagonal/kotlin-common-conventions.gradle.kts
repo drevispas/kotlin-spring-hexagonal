@@ -8,6 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java-conventions")
+    id("testing-conventions")
 
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     kotlin("jvm")
@@ -21,9 +22,6 @@ dependencies {
 
     // 로깅 의존성
     implementation("io.github.microutils:kotlin-logging-jvm:${Version.KOTLIN_LOGGIN}")
-
-    // 테스팅 의존성
-    testImplementation("org.junit.jupiter:junit-jupiter:${Version.JUPITER}")
 }
 
 // Spring initializer에 의해 자동으로 추가된 라인들 가져 옴
@@ -32,9 +30,4 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = Version.JDK
     }
-}
-
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
 }

@@ -6,4 +6,6 @@ object Version {
     const val KOTLIN_LOGGIN = "3.0.4"
     const val JUPITER = "5.9.1"
     const val TESTCONTAINERS = "1.17.6"
+    const val KOTEST = "5.5.4"
+    const val MOCKK = "1.13.3"
 }
