@@ -1,56 +1,33 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.example.kotlinspringhexagonal.Version
 
 plugins {
-    id("org.springframework.boot") version "3.0.1"
-    id("io.spring.dependency-management") version "1.1.0"
-    kotlin("jvm") version "1.8.0"
-    kotlin("plugin.spring") version "1.8.0"
-    java
+    id("kotlin-application-conventions")
+    id("spring-conventions")
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
-
-repositories {
-    mavenCentral()
-}
-
-extra["testcontainersVersion"] = "1.17.6"
+// infrastructure만 bootJar를 생성하도록 한다.
+tasks.bootJar { enabled = true }
 
 dependencies {
+    // subproject에 의존성 연결하기
     implementation(project(":common"))
     implementation(project(":adapters:web"))
     implementation(project(":adapters:persistence"))
+
+    // Spring 의존성들
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-//    implementation("org.springframework.boot:spring-boot-starter-web")
-//    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    runtimeOnly("com.h2database:h2")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
+
+    // 데이터 의존성
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // 테스팅 의존성
     testImplementation("org.testcontainers:junit-jupiter")
-    testImplementation("com.h2database:h2")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
+        mavenBom("org.testcontainers:testcontainers-bom:${Version.TESTCONTAINERS}")
     }
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }

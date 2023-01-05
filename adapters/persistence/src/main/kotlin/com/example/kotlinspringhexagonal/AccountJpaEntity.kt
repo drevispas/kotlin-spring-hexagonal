@@ -18,6 +18,7 @@ class AccountJpaEntity(
     val balanceAmount: Long = 0L
 )
 
+// 확장 함수 대신 object로 converter를 따로 만들 수도 있다.
 fun AccountJpaEntity.toDomainEntity() = Account(
     Account.AccountId(accountNumber, id ?: -1L),
     accountName,

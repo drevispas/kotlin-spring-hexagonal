@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service
 @Service
 class RegisterAccountService(
     private val createAccountPort: CreateAccountPort
-):RegisterAccountUseCase {
+) : RegisterAccountUseCase {
     override fun register(command: RegisterAccountUseCase.Command): Account {
 
-        val account = Account(Account.AccountId(command.accountNumber), command.accountName, Money(command.balanceAmount))
+        val account =
+            Account(Account.AccountId(command.accountNumber), command.accountName, Money(command.balanceAmount))
         return createAccountPort.create(account.accountId.number, account.accountName, account.balance.amount)
     }
 }
