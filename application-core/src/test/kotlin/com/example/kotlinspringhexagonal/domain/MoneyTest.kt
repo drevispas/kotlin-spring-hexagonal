@@ -7,6 +7,10 @@ import io.kotest.matchers.shouldBe
  * kotest 는 given/when/then 스타일 뿐만 아니라 다양한 스타일을 제공한다.
  * 우리는 그 중에서 아래의 better spec을 추종하도록 한다.
  * - https://www.betterspecs.org/
+ *
+ * TODO: Money는 간단하지만 필드가 많은 entity나 vo를 기본값으로 생성해주는 helper function을
+ *  만들어 두는 것이 유용하다. Domain 객체에 대한 헬퍼는 다른 layer에서도 자주 사용되므로 domain에
+ *  testFixtures를 만드는 것을 고려한다.
  */
 class MoneyTest : DescribeSpec() {
     init {

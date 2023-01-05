@@ -6,6 +6,8 @@ package com.example.kotlinspringhexagonal.domain
  * 이러한 객체들이 같은 비지니스 그룹으로 묶일 때 root 객체를 aggregate root entity라고 부른다.
  * 비지니스 로직을 작성할 때는 aggregate root를 가져와서 읽고 수정한 다음, aggregate 단위 통째로 DB에 저장하여야 한다.
  * 비지니스를 우선으로 하는 개발을 위해서는 가장 안쪽에 있는 domain 객체들을 가장 먼저 개발하고 바깥쪽으로 이동하여야 한다.
+ *
+ * Account처럼 ID를 가지고 객체 생명주기가 있는 도메인 객체를 도메인 엔터티라고 부른다.
  */
 data class Account(
     val accountId: AccountId,
