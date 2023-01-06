@@ -1,5 +1,4 @@
 import com.example.kotlinspringhexagonal.Version
-import gradle.kotlin.dsl.accessors._0ef8f44799d218292e69168ba447ac3a.implementation
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /*
@@ -15,6 +14,7 @@ plugins {
     kotlin("jvm")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jlleitschuh.gradle.ktlint-idea")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 group = "com.example"
@@ -41,3 +41,6 @@ tasks.withType<KotlinCompile> {
         jvmTarget = Version.JDK
     }
 }
+
+// Kover 설정
+// https://kotlin.github.io/kotlinx-kover/

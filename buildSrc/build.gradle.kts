@@ -19,4 +19,5 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-noarg:1.8.0")
     implementation("org.springframework.boot:spring-boot-gradle-plugin:3.0.1")
     implementation("org.jlleitschuh.gradle:ktlint-gradle:11.0.0")
+    implementation("org.jetbrains.kotlinx:kover:0.6.1")
 }
