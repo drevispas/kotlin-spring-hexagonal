@@ -38,7 +38,7 @@ jobs:
 
       - name: test
         run: gradlew :application-core:check
-        if: alwyas()
+        if: always()
 
 #      - name: Publish test result
 #        uses: EnricoMi/publish-unit-test-result-action@v1
