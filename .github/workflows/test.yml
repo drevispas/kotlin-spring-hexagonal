@@ -27,7 +27,7 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x gradlew
       - name: lint
-        run: gradlw ktlintCheck
+        run: gradlew ktlintCheck
 #        if: alwyas()
 #      - name: test
 #        run: gradlew test --stacktrace
