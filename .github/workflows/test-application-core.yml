@@ -37,8 +37,8 @@ jobs:
         run: ./gradlew :application-core:ktlintCheck
         if: always()
 
-      - name: Test coverage
-        run: ./gradlew :application-core:koverReport
+      - name: Test
+        run: ./gradlew :application-core:test
         if: always()
 
       - name: Publish test result
