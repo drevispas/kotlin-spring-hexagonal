@@ -7,5 +7,4 @@ import org.springframework.context.annotation.Configuration
  * 각자 장단점이 있지만 결국 목적은 application context에 bean을 등록하는 것이다.
  */
 @Configuration
-class SpringConfiguration {
-}
+class SpringConfiguration

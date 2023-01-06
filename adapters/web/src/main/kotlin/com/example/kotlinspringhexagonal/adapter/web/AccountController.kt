@@ -2,7 +2,6 @@ package com.example.kotlinspringhexagonal.adapter.web
 
 import com.example.kotlinspringhexagonal.application.port.`in`.RegisterAccountUseCase
 import com.example.kotlinspringhexagonal.application.port.`in`.ViewAccountQuery
-import com.example.kotlinspringhexagonal.domain.Account
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 
 /**
  * 가장 익숙한 Spring Web을 이용한 예제인데, Spring Webflux 버전으로 수정해도 된다.
+ * @RestControllerAdvice 등으로 입력 유효성을 검증한다.
  */
 @RestController
 @RequestMapping("/account")
@@ -24,13 +24,13 @@ class AccountController(
         @PathVariable("accountNumber") accountNumber: Long,
         @PathVariable("accountName") userName: String,
         @PathVariable("balanceAmount") balanceAmount: Long
-    ): Account {
+    ): RegisterAccountUseCase.Result {
+        /* TODO: Uscase result -> Http entity 출력 모델로의 변환을 추가한다. */
         return registerAccountUseCase.register(RegisterAccountUseCase.Command(accountNumber, userName, balanceAmount))
     }
 
     @GetMapping("/{accountNumber}")
-    fun view(@PathVariable("accountNumber") accountNumber: Long): Account {
+    fun view(@PathVariable("accountNumber") accountNumber: Long): ViewAccountQuery.Result {
         return viewAccountQuery.view(ViewAccountQuery.Query(accountNumber))
     }
-
 }
