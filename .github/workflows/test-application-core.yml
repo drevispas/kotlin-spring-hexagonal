@@ -29,22 +29,21 @@ jobs:
           distribution: 'temurin'
 
       # Gradle 자체 제공하는 cache 메카니즘을 사용한다.
+      # https://docs.gradle.org/current/userguide/github-actions.html
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
       - name: Lint
-#        run: ./gradlew :application-core:ktlintCheck
-        run: ./gradlew ktlintCheck
+        run: ./gradlew :application-core:ktlintCheck
         if: always()
 
-      - name: Test
-#        run: ./gradlew :application-core:check
-        run: ./gradlew check
+      - name: Test coverage
+        run: ./gradlew :application-core:koverReport
         if: always()
 
-#      - name: Publish test result
-#        uses: EnricoMi/publish-unit-test-result-action@v1
-#        if: always()
-#        with:
-#          files: presentation/build/test-results/**/*.xml
-#          check_name: Presentation Unit Test Results
+      - name: Publish test result
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: application-core/build/test-results/**/*.xml
+          check_name: Unit Test Results
