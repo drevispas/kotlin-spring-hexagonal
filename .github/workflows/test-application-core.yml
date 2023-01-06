@@ -37,7 +37,7 @@ jobs:
         if: always()
 
       - name: test
-        run: gradlew :application-core:check
+        run: ./gradlew :application-core:check
         if: always()
 
 #      - name: Publish test result
