@@ -40,7 +40,7 @@ interface RegisterAccountUseCase {
     /**
      * usecase --> web으로의 출력 모델도 usecase 별로 각자 정의한다. 가능한 최소한의 데이터를 노출하도록 설계하여야 한다.
      */
-    data class Result(val accountSatus:AccountStatus, val accountData:AccountData) {
+    data class Result(val accountSatus: AccountStatus, val accountData: AccountData) {
         data class AccountData(val accountNumber: Long, val accountName: String, val depositAmount: Long)
     }
 

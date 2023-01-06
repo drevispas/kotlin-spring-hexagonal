@@ -2,7 +2,6 @@ package com.example.kotlinspringhexagonal.adapter.web
 
 import com.example.kotlinspringhexagonal.application.port.`in`.RegisterAccountUseCase
 import com.example.kotlinspringhexagonal.application.port.`in`.ViewAccountQuery
-import com.example.kotlinspringhexagonal.domain.Account
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,11 +25,12 @@ class AccountController(
         @PathVariable("accountName") userName: String,
         @PathVariable("balanceAmount") balanceAmount: Long
     ): RegisterAccountUseCase.Result {
+        /* TODO: Uscase result -> Http entity 출력 모델로의 변환을 추가한다. */
         return registerAccountUseCase.register(RegisterAccountUseCase.Command(accountNumber, userName, balanceAmount))
     }
 
     @GetMapping("/{accountNumber}")
-    fun view(@PathVariable("accountNumber") accountNumber: Long): Account {
+    fun view(@PathVariable("accountNumber") accountNumber: Long): ViewAccountQuery.Result {
         return viewAccountQuery.view(ViewAccountQuery.Query(accountNumber))
     }
 }

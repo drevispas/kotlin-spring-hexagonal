@@ -2,7 +2,7 @@ package com.example.kotlinspringhexagonal.domain
 
 enum class AccountStatus {
     REGISTERING,
-//    ACTIVE,
+    ACTIVE,
 //    INACTIVE,
 //    DELETED
 }
