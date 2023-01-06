@@ -32,12 +32,14 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: lint
-        run: ./gradlew :application-core:ktlintCheck
+      - name: Lint
+#        run: ./gradlew :application-core:ktlintCheck
+        run: ./gradlew ktlintCheck
         if: always()
 
-      - name: test
-        run: ./gradlew :application-core:check
+      - name: Test
+#        run: ./gradlew :application-core:check
+        run: ./gradlew check
         if: always()
 
 #      - name: Publish test result
