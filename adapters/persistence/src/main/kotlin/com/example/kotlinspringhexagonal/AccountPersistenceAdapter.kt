@@ -4,7 +4,6 @@ import com.example.kotlinspringhexagonal.application.port.out.CreateAccountPort
 import com.example.kotlinspringhexagonal.application.port.out.LoadAccountPort
 import com.example.kotlinspringhexagonal.application.port.out.UpdateAccountPort
 import com.example.kotlinspringhexagonal.domain.Account
-import com.example.kotlinspringhexagonal.domain.Money
 import org.springframework.stereotype.Component
 
 /**

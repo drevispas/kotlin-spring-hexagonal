@@ -1,7 +1,6 @@
 package com.example.kotlinspringhexagonal.application.port.`in`
 
 import com.example.kotlinspringhexagonal.domain.Account
-import com.example.kotlinspringhexagonal.domain.Money
 
 /**
  * Command usecase (비지니스 상태를 바꾸는 유스케이스)인 경우 접미사 UseCase를 사용한다.
