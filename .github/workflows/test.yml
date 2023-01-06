@@ -37,7 +37,7 @@ jobs:
 
       - name: lint
         run: ./gradlew ktlintCheck
-        if: alwyas()
+        if: always()
 #      - name: test
 #        run: gradlew test --stacktrace
 #        if: alwyas()
