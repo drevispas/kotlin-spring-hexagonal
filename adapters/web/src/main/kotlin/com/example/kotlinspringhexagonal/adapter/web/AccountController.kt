@@ -32,5 +32,4 @@ class AccountController(
     fun view(@PathVariable("accountNumber") accountNumber: Long): Account {
         return viewAccountQuery.view(ViewAccountQuery.Query(accountNumber))
     }
-
 }

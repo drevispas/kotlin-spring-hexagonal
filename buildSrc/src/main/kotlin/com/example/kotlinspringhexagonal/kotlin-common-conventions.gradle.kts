@@ -1,8 +1,6 @@
 import com.example.kotlinspringhexagonal.Version
 import gradle.kotlin.dsl.accessors._0ef8f44799d218292e69168ba447ac3a.implementation
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-import org.springframework.boot.gradle.tasks.run.BootRun
 
 /*
  * Kotlin 프로젝트 공용 플러그인
@@ -30,6 +28,10 @@ dependencies {
 
     // 로깅 의존성
     implementation("io.github.microutils:kotlin-logging-jvm:${Version.KOTLIN_LOGGIN}")
+
+    // 입력 검증
+    // https://github.com/konform-kt/konform
+    implementation("io.konform:konform-jvm:${Version.KONFORM}")
 }
 
 // Spring initializer에 의해 자동으로 추가된 라인들 가져 옴
@@ -39,10 +41,3 @@ tasks.withType<KotlinCompile> {
         jvmTarget = Version.JDK
     }
 }
-
-//tasks.register("installGitHook", Copy::class) {
-//    from(File(rootProject.rootDir, "scripts/pre-commit"))
-//    into(File(rootProject.rootDir, ".git/hooks"))
-//    fileMode = 777
-//}
-//tasks.getByPath("preBuild").dependsOn("installGitHook")

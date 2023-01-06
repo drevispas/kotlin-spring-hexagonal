@@ -1,0 +1,12 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--            <pattern>%cyan(%d) %yellow([%thread]) %green(%-5level) %cyan(%logger{36}::%method\(\)) %magenta([%file:%line]) traceId=%mdc{traceId:-?}%n%msg%n-->
+            <pattern>%cyan(%d) %yellow([%thread]) %green(%-5level) %cyan(%logger{64}::%method\(\)) %magenta([%file:%line]) traceId=%mdc{traceId:-?}%n%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

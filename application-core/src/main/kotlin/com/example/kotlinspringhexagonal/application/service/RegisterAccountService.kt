@@ -10,7 +10,13 @@ import org.springframework.stereotype.Service
 class RegisterAccountService(
     private val createAccountPort: CreateAccountPort
 ) : RegisterAccountUseCase {
+
+//    private val logger = KotlinLogging.logger {}
+
     override fun register(command: RegisterAccountUseCase.Command): Account {
+
+//        val validationResult = RegisterAccountUseCase.validateCommand(command)
+//        logger.info { validationResult }
 
         val account =
             Account(Account.AccountId(command.accountNumber), command.accountName, Money(command.balanceAmount))
