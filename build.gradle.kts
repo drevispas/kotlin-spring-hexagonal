@@ -1,1 +1,3 @@
-// empty intentionally; check buildSrc/v
+plugins {
+    id("kotlin-common-conventions")
+}

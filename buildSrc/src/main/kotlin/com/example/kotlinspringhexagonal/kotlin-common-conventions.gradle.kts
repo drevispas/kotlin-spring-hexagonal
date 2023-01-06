@@ -1,5 +1,8 @@
 import com.example.kotlinspringhexagonal.Version
+import gradle.kotlin.dsl.accessors._0ef8f44799d218292e69168ba447ac3a.implementation
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 /*
  * Kotlin 프로젝트 공용 플러그인
@@ -12,7 +15,12 @@ plugins {
 
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     kotlin("jvm")
+    id("org.jlleitschuh.gradle.ktlint")
+    id("org.jlleitschuh.gradle.ktlint-idea")
 }
+
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
 
 dependencies {
     // Kotlin 의존성
@@ -31,3 +39,10 @@ tasks.withType<KotlinCompile> {
         jvmTarget = Version.JDK
     }
 }
+
+//tasks.register("installGitHook", Copy::class) {
+//    from(File(rootProject.rootDir, "scripts/pre-commit"))
+//    into(File(rootProject.rootDir, ".git/hooks"))
+//    fileMode = 777
+//}
+//tasks.getByPath("preBuild").dependsOn("installGitHook")

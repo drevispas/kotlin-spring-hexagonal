@@ -1,7 +1,8 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
-    id("java-conventions")
+    id("kotlin-application-conventions")
 
     // Classes annotated with @Configuration, @Controller, @RestController, @Service or @Repository are automatically opened
     // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
@@ -27,9 +28,11 @@ tasks.named<BootJar>("bootJar") {
     enabled = false
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
+tasks.named<BootRun>("bootRun") {
+    enabled = false
+}
 
+// 스프링 의존성이 있더라도 기본적으로는 bootJar, bootRun 태스크를 skip하게 한다.
 springBoot {
     // Creates META-INF/build-info.properties for Spring Boot Actuator
     buildInfo()

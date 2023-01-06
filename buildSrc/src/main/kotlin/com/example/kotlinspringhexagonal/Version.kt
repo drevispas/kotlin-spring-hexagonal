@@ -8,4 +8,5 @@ object Version {
     const val TESTCONTAINERS = "1.17.6"
     const val KOTEST = "5.5.4"
     const val MOCKK = "1.13.3"
+    const val KTLINT_GRADLE = "11.0.0"
 }
