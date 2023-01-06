@@ -10,7 +10,10 @@ jobs:
   test:
 
     name: lint and test
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout branch
@@ -24,11 +27,17 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Grant execute permission to gradlew
-        run: chmod +x gradlew
+
+      # Gradle 자체 제공하는 cache 메카니즘을 사용한다.
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+#      - name: Grant execute permission to gradlew
+#        run: chmod +x gradlew
+
       - name: lint
         run: ./gradlew ktlintCheck
-#        if: alwyas()
+        if: alwyas()
 #      - name: test
 #        run: gradlew test --stacktrace
 #        if: alwyas()
