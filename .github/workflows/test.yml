@@ -1,0 +1,40 @@
+name: 'test-application-core'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  test:
+
+    name: lint and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+      - name: lint
+        run: gradlw ktlintCheck
+        if: alwyas()
+#      - name: test
+#        run: gradlew test --stacktrace
+#        if: alwyas()
+#      - name: Publish test result
+#        uses: EnricoMi/publish-unit-test-result-action@v1
+#        if: always()
+#        with:
+#          files: presentation/build/test-results/**/*.xml
+#          check_name: Presentation Unit Test Results
