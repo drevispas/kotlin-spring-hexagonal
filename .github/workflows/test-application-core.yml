@@ -1,4 +1,4 @@
-name: 'test-application-core'
+name: 'test-application-core-domain'
 
 on:
   push:
