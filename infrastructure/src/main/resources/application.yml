@@ -5,6 +5,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
+      # 쉬운 테스트를 위해서 ORM에게 DDL을 허용한다. 실제 환경에서는 사용하면 안 됨.
       ddl-auto: create-drop
   h2:
     console:
