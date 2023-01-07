@@ -1,4 +1,4 @@
-package com.example.kotlinspringhexagonal
+package com.example.kotlinspringhexagonal.adapter.persistence
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 

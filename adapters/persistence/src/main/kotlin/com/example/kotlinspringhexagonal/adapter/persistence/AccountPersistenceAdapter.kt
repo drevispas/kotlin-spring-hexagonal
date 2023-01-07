@@ -1,4 +1,4 @@
-package com.example.kotlinspringhexagonal
+package com.example.kotlinspringhexagonal.adapter.persistence
 
 import com.example.kotlinspringhexagonal.application.port.out.CreateAccountPort
 import com.example.kotlinspringhexagonal.application.port.out.LoadAccountPort

@@ -1,4 +1,4 @@
-package com.example.kotlinspringhexagonal
+package com.example.kotlinspringhexagonal.adapter.persistence
 
 import com.example.kotlinspringhexagonal.domain.Account
 import com.example.kotlinspringhexagonal.domain.Money
