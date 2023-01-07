@@ -1,4 +1,4 @@
-name: 'test-application-core-domain'
+name: 'lint-and-test'
 
 on:
   push:
@@ -26,6 +26,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+          # Dockerfile 만들 때도 동일한 termurin 이미지를 사용한다.
           distribution: 'temurin'
 
       # Gradle 자체 제공하는 cache 메카니즘을 사용한다.
@@ -33,17 +34,20 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+      # 속도를 높이려면 나중에 subproject 별로 yml을 따로 만든다.
       - name: Lint
-        run: ./gradlew :application-core:ktlintCheck
+        run: ./gradlew ktlintCheck
+        # 스타일 검사가 실패하더라도 뒤에 test를 수행하게 한다.
         if: always()
 
+      # Gradle 캐싱되어 두 번째 실행부터는 빠르다.
       - name: Test
-        run: ./gradlew :application-core:test
+        run: ./gradlew test
         if: always()
 
-      - name: Publish test result
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: application-core/build/test-results/**/*.xml
-          check_name: Unit Test Results
+#      - name: Publish test result
+#        uses: EnricoMi/publish-unit-test-result-action@v1
+#        if: always()
+#        with:
+#          files: application-core/build/test-results/**/*.xml
+#          check_name: Unit Test Results
