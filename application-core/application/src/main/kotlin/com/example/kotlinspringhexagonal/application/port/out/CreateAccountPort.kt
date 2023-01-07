@@ -9,5 +9,5 @@ import com.example.kotlinspringhexagonal.domain.Account
  */
 interface CreateAccountPort {
 
-    fun create(accountNumber: Long, accountName: String, balanceAmount: Long): Account
+    fun create(account: Account): Account
 }

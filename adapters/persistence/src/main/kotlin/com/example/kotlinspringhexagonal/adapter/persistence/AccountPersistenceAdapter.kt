@@ -24,8 +24,8 @@ class AccountPersistenceAdapter(
      * Usecase -> Persistence로 요청할 때는 별도의 command 객체를 생성하지 않고
      * Account에서 필요한 데이터만 파라미터로 추출하거나 Account 엔터티 객체를 통째로 넘긴다.
      */
-    override fun create(accountNumber: Long, accountName: String, balanceAmount: Long): Account {
-        val saved = accountRepostory.save(AccountJpaEntity(null, accountNumber, accountName, balanceAmount))
+    override fun create(account: Account): Account {
+        val saved = accountRepostory.save(AccountJpaEntity.fromDomainEntity(account))
         /**
          * Persistence --> Usecase로의 출력 모델도 별도의 출력 모델을 정의하지 않고
          * Account 엔터티 모델을 그대로 사용한다.
