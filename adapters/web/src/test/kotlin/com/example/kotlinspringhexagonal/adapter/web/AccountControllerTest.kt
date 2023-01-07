@@ -2,8 +2,7 @@ package com.example.kotlinspringhexagonal.adapter.web
 
 import com.example.kotlinspringhexagonal.application.port.`in`.RegisterAccountUseCase
 import com.example.kotlinspringhexagonal.application.port.`in`.ViewAccountQuery
-import com.example.kotlinspringhexagonal.domain.Account
-import com.example.kotlinspringhexagonal.domain.Money
+import com.example.kotlinspringhexagonal.domain.AccountTestFixture
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,8 +27,7 @@ internal class AccountControllerTest {
     @Test
     fun testRegisterAccount() {
         val command = RegisterAccountUseCase.Command(1001, "brad", 100)
-        val accountDomainEntity = Account(Account.AccountId(1001, 1), "account1", Money(100))
-        val accountResult = RegisterAccountUseCase.fromDomainEntity(accountDomainEntity)
+        val accountResult = RegisterAccountUseCase.fromDomainEntity(AccountTestFixture.createAccount())
         Mockito.`when`(registerAccountUseCase.register(command)).thenReturn(accountResult)
 
         mockMvc.get("/accounts/1001/brad/100") {

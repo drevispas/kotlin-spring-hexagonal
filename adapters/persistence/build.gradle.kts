@@ -16,6 +16,9 @@ dependencies {
     // DB 의존성
     runtimeOnly("com.h2database:h2")
     testImplementation("com.h2database:h2")
+
+    // Test fixtures
+    testImplementation(testFixtures(project(":application-core:domain")))
 }
 
 dependencyManagement {

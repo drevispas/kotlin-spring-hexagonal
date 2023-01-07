@@ -1,7 +1,6 @@
 package com.example.kotlinspringhexagonal.adapter.persistence
 
-import com.example.kotlinspringhexagonal.domain.Account
-import com.example.kotlinspringhexagonal.domain.Money
+import com.example.kotlinspringhexagonal.domain.AccountTestFixture
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -27,7 +26,7 @@ internal class AccountPersistenceAdapterTest() {
     fun load() {
 
         val actual = adapter.load(1001)
-        val expected = Account(Account.AccountId(1001, 1), "account1", Money(100))
+        val expected = AccountTestFixture.createAccount()
         assertThat(actual).isEqualTo(expected)
     }
 }
