@@ -21,7 +21,7 @@ class RegisterAccountService(
         /* Account 엔터티 생성자가 비지니스 규칙을 검사하도록 하고 있다. */
         val account =
             Account(Account.AccountId(command.accountNumber), command.accountName, Money(command.balanceAmount))
-        val savedAccount = createAccountPort.create(account.accountId.number, account.accountName, account.balance.amount)
+        val savedAccount = createAccountPort.create(account)
         return RegisterAccountUseCase.fromDomainEntity(savedAccount)
     }
 }

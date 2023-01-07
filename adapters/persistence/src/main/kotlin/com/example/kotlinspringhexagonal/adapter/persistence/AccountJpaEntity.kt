@@ -20,7 +20,16 @@ class AccountJpaEntity(
     val accountNumber: Long,
     val accountName: String,
     val balanceAmount: Long = 0L
-)
+) {
+    companion object {
+        fun fromDomainEntity(account: Account) = AccountJpaEntity(
+            null,
+            account.accountId.number,
+            account.accountName,
+            account.balance.amount
+        )
+    }
+}
 
 // 확장 함수 대신 object로 converter를 따로 만들 수도 있다.
 fun AccountJpaEntity.toDomainEntity() = Account(
