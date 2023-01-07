@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
  * @RestControllerAdvice 등으로 입력 유효성을 검증한다.
  */
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/accounts")
 class AccountController(
     private val registerAccountUseCase: RegisterAccountUseCase,
     private val viewAccountQuery: ViewAccountQuery

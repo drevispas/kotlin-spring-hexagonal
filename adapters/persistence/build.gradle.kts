@@ -15,9 +15,6 @@ dependencies {
     // DB 의존성
     runtimeOnly("com.h2database:h2")
     testImplementation("com.h2database:h2")
-
-    // 테스팅 의존성
-    testImplementation("org.testcontainers:junit-jupiter")
 }
 
 dependencyManagement {

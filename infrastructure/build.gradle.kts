@@ -16,13 +16,9 @@ dependencies {
     // Spring 의존성들
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    // 데이터 의존성
+    // 포맷 의존성
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-    // 테스팅 의존성
-    testImplementation("org.testcontainers:junit-jupiter")
 }
 
 dependencyManagement {

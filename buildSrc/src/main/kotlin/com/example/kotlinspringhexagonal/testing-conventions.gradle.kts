@@ -6,7 +6,8 @@ plugins {
 
 dependencies {
     // 테스팅 의존성
-    testImplementation("org.junit.jupiter:junit-jupiter:${Version.JUPITER}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${Version.JUPITER}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${Version.JUPITER}")
     testImplementation("io.kotest:kotest-runner-junit5:${Version.KOTEST}")
     testImplementation("io.kotest:kotest-assertions-core:${Version.KOTEST}")
     testImplementation("io.mockk:mockk:${Version.MOCKK}")
