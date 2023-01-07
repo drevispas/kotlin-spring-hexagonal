@@ -42,5 +42,11 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+// .gitkeep 파일 중복
+// https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
+tasks.withType<Jar>() {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 // Kover 설정
 // https://kotlin.github.io/kotlinx-kover/
