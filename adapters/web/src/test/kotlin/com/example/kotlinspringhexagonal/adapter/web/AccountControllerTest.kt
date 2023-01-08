@@ -12,6 +12,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 
+// TODO: Junit5 대신 Kotest 사용하도록 변경
 @WebMvcTest(controllers = [AccountController::class])
 internal class AccountControllerTest {
 

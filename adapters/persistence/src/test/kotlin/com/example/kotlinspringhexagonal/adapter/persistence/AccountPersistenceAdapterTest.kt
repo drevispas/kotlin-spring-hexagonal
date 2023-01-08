@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.jdbc.Sql
 
+// TODO: Junit5 대신 Kotest 사용하도록 변경
 @DataJpaTest
 @Import(AccountPersistenceAdapter::class)
 internal class AccountPersistenceAdapterTest() {

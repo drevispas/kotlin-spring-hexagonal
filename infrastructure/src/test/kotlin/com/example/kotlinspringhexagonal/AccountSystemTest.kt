@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.jdbc.Sql
 
+// TODO: Junit5 대신 Kotest 사용하도록 변경
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class AccountSystemTest {
 
