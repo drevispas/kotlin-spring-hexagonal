@@ -12,7 +12,7 @@ object AccountTestFixture {
         accountName: String = ACCOUNT_NAME,
         balanceAmount: Long = 100,
     ) = Account(
-        accountId = Account.AccountId(accountNumber, 1),
+        accountId = Account.AccountId(accountNumber),
         accountName = accountName,
         balance = Money(balanceAmount)
     )
