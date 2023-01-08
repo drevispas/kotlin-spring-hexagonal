@@ -28,5 +28,5 @@ data class Account(
 
     private fun isWithdrawable(money: Money) = (balance - money).amount >= 0
 
-    data class AccountId(val number: Long, val seq: Long = -1L)
+    data class AccountId(val number: Long)
 }

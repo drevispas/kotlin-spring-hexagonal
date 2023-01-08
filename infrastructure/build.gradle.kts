@@ -12,13 +12,21 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":adapters:web"))
     implementation(project(":adapters:persistence"))
+    implementation(project(":application-core:application"))
+    implementation(project(":application-core:domain"))
 
     // Spring 의존성들
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
     // 포맷 의존성
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // test fixtures
+    testImplementation(testFixtures(project(":application-core:domain")))
+    testImplementation(testFixtures(project(":adapters:persistence")))
 }
 
 dependencyManagement {
