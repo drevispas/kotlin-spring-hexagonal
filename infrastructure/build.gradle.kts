@@ -26,6 +26,7 @@ dependencies {
 
     // test fixtures
     testImplementation(testFixtures(project(":application-core:domain")))
+    testImplementation(testFixtures(project(":adapters:persistence")))
 }
 
 dependencyManagement {
