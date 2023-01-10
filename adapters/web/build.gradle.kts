@@ -11,6 +11,7 @@ dependencies {
     // Spring 의존성
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 
     // test fixtures
     testImplementation(testFixtures(project(":application-core:domain")))

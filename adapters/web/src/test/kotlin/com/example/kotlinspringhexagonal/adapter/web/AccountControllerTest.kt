@@ -3,16 +3,26 @@ package com.example.kotlinspringhexagonal.adapter.web
 import com.example.kotlinspringhexagonal.application.port.`in`.RegisterAccountUseCase
 import com.example.kotlinspringhexagonal.application.port.`in`.ViewAccountQuery
 import com.example.kotlinspringhexagonal.domain.AccountTestFixture
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
+import org.springframework.restdocs.RestDocumentationContextProvider
+import org.springframework.restdocs.RestDocumentationExtension
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.web.context.WebApplicationContext
 
 // TODO: Junit5 대신 Kotest 사용하도록 변경
+
+// https://www.baeldung.com/spring-rest-docs
+@ExtendWith(RestDocumentationExtension::class, SpringExtension::class)
 @WebMvcTest(controllers = [AccountController::class])
 internal class AccountControllerTest {
 
@@ -25,19 +35,35 @@ internal class AccountControllerTest {
     @MockBean
     private lateinit var viewAccountQuery: ViewAccountQuery
 
+    @BeforeEach
+    fun setUp(webApplicationContext: WebApplicationContext, restDocumentation: RestDocumentationContextProvider) {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build()
+    }
+
     @Test
     fun testRegisterAccount() {
-        val command = RegisterAccountUseCase.Command(1001, "brad", 100)
+        val command = RegisterAccountUseCase.Command(
+            AccountTestFixture.ACCOUNT_NUMBER,
+            AccountTestFixture.ACCOUNT_NAME,
+            AccountTestFixture.BALANCE_AMOUNT
+        )
         val accountResult = RegisterAccountUseCase.fromDomainEntity(AccountTestFixture.createAccount())
         Mockito.`when`(registerAccountUseCase.register(command)).thenReturn(accountResult)
 
-        mockMvc.get("/accounts/1001/brad/100") {
+        val url =
+            "/accounts/${AccountTestFixture.ACCOUNT_NUMBER}/${AccountTestFixture.ACCOUNT_NAME}/${AccountTestFixture.BALANCE_AMOUNT}"
+        mockMvc.get(url) {
             accept = MediaType.APPLICATION_JSON
         }.andDo {
             print()
         }.andExpect {
             status { isOk() }
-            content { contentType(MediaType.APPLICATION_JSON) }
+            content {
+                contentType(MediaType.APPLICATION_JSON)
+                jsonPath("$.accountData.accountNumber") { value(AccountTestFixture.ACCOUNT_NUMBER) }
+                jsonPath("$.accountData.accountName") { value(AccountTestFixture.ACCOUNT_NAME) }
+                jsonPath("$.accountData.depositAmount") { value(AccountTestFixture.BALANCE_AMOUNT) }
+            }
         }
     }
 }
