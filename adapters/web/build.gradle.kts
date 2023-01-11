@@ -1,5 +1,8 @@
 plugins {
     id("kotlin-spring-conventions")
+
+    // Documentation
+    id("org.asciidoctor.jvm.convert") version "3.1.0"
 }
 
 dependencies {
@@ -11,6 +14,9 @@ dependencies {
     // Spring 의존성
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+    // Documentation
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 
     // test fixtures
     testImplementation(testFixtures(project(":application-core:domain")))
