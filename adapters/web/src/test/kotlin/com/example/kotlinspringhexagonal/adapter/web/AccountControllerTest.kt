@@ -3,26 +3,22 @@ package com.example.kotlinspringhexagonal.adapter.web
 import com.example.kotlinspringhexagonal.application.port.`in`.RegisterAccountUseCase
 import com.example.kotlinspringhexagonal.application.port.`in`.ViewAccountQuery
 import com.example.kotlinspringhexagonal.domain.AccountTestFixture
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
-import org.springframework.restdocs.RestDocumentationContextProvider
-import org.springframework.restdocs.RestDocumentationExtension
-import org.springframework.test.context.junit.jupiter.SpringExtension
+import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
-import org.springframework.web.context.WebApplicationContext
 
 // TODO: Junit5 대신 Kotest 사용하도록 변경
 
 // https://www.baeldung.com/spring-rest-docs
-@ExtendWith(RestDocumentationExtension::class, SpringExtension::class)
+// @ExtendWith(RestDocumentationExtension::class, SpringExtension::class)
+@AutoConfigureRestDocs
 @WebMvcTest(controllers = [AccountController::class])
 internal class AccountControllerTest {
 
@@ -35,10 +31,10 @@ internal class AccountControllerTest {
     @MockBean
     private lateinit var viewAccountQuery: ViewAccountQuery
 
-    @BeforeEach
-    fun setUp(webApplicationContext: WebApplicationContext, restDocumentation: RestDocumentationContextProvider) {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build()
-    }
+//    @BeforeEach
+//    fun setUp(webApplicationContext: WebApplicationContext, restDocumentation: RestDocumentationContextProvider) {
+//        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build()
+//    }
 
     @Test
     fun testRegisterAccount() {
@@ -64,6 +60,8 @@ internal class AccountControllerTest {
                 jsonPath("$.accountData.accountName") { value(AccountTestFixture.ACCOUNT_NAME) }
                 jsonPath("$.accountData.depositAmount") { value(AccountTestFixture.BALANCE_AMOUNT) }
             }
+        }.andDo {
+            handle(document("accounts/register-account"))
         }
     }
 }
