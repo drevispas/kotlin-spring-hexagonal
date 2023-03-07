@@ -27,7 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     // 로깅 의존성
-    implementation("io.github.microutils:kotlin-logging-jvm:${Version.KOTLIN_LOGGIN}")
+    implementation("io.github.microutils:kotlin-logging-jvm:${Version.KOTLIN_LOGGING}")
 
     // 입력 검증
     // https://github.com/konform-kt/konform

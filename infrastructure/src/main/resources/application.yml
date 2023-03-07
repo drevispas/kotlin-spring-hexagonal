@@ -1,13 +1,24 @@
+#spring:
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:../build/test
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      # 쉬운 테스트를 위해서 ORM에게 DDL을 허용한다. 실제 환경에서는 사용하면 안 됨.
+#      ddl-auto: create-drop
+#  h2:
+#    console:
+#      path: /h2-console
+#      enabled: true
+
 spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:../test
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      # 쉬운 테스트를 위해서 ORM에게 DDL을 허용한다. 실제 환경에서는 사용하면 안 됨.
-      ddl-auto: create-drop
-  h2:
-    console:
-      path: /h2-console
-      enabled: true
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:test}
+    username: ${MYSQL_USER:user}
+    password: ${MYSQL_PASSWORD:password}

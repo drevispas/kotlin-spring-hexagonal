@@ -31,7 +31,7 @@ class AccountSystemTest {
     }
 
     @Test
-    @Sql("persistence/create-account.sql")
+    @Sql("adapter/persistence/load-data.sql")
     fun testViewAccount() {
         val response = restTemplate.getForEntity(
             "/accounts/1001",

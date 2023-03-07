@@ -22,7 +22,7 @@ class AccountPersistenceAdapter(
     /**
      * JPA 입장에서는 Jpa Entity가 입력 모델이다.
      * Usecase -> Persistence로 요청할 때는 별도의 command 객체를 생성하지 않고
-     * Account에서 필요한 데이터만 파라미터로 추출하거나 Account 엔터티 객체를 통째로 넘긴다.
+     * Account에서 필요한 데이터만 추출해서 파라미터로 넘기거나 Account 엔터티 객체를 통째로 넘긴다.
      */
     override fun create(account: Account): Account {
         val saved = accountRepostory.save(AccountJpaEntity.fromDomainEntity(account))
